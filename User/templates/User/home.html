@@ -1,0 +1,261 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css" %}">
+    <link rel="stylesheet" href="{% static "User/Home_style.css" %}">
+    <link href="{% static "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" %}" rel='stylesheet'>
+    <title>Work</title>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-logo">
+            <a href="#">
+                <img src="{% static "User/images/logo1.png" %}">
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li class="link"><a href="#">Home</a></li>
+            <li id="link1" class="link"><a href="#">Find Talent</a></li>
+            <li id="link2" class="link"><a href="#">Find Work</a></li>
+            <li id="link3" class="link"><a href="login/login.html">About</a></li>
+            <li id="link4" class="link"><a href="#">Help</a></li>
+            
+        </ul>
+        <form action="login/login.html"><button type="submit" class="btn">Sign In</button></form>
+        
+    </nav>
+
+    <header class="container">
+        <div class="content">
+            <span class="blur"></span>
+            <span class="blur"></span>
+            <h4>WORK LIKE A PRO</h4>
+            <H1>HOW<span> WORK </span><br> SHOULD <span> WORK </span></H1>
+            <p>
+                Forget the old rules.You can have best people.<br>Right now.Right here.
+            </p>
+            <a href="login/login.html"><button class="btn">Get Started</button></a>
+        </div>
+        <div class="image">
+            <img src="images/img6.jpg">
+        </div>
+        <div class="image2">
+            <img src="images/img5.jpg">
+        </div>
+        <div class="spacing">
+            <div class="content1">
+                <span class="blur"></span>
+                <span class="blur"></span>
+                <!-- <h4>CREATE YOUR SITE LIKE A PRO</h4> -->
+                <H1>UP YOUR WORK GAME,IT'S EASY</H1>
+                <h4>
+                    <i class='bx bx-edit'></i>No cost to join
+                </h4>
+                <p>Register and browse professionals,explore projects,or even book a consultant</p>
+                <h4>
+                    <i class='bx bx-edit'></i>Post a job and hire top talent
+                </h4>
+                <p>Finding talent doesn't have to be a chore.Post a job and we can search for you!</p>
+                <h4>
+                    <i class='bx bx-edit'></i>Work with the best—Without breaking the bank
+                </h4>
+                <p>Upwork makes it affordable to up your work and take advantage of low transaction rates</p>
+                <a href="login/login.html"><button class="btn">Get Started</button></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1 class="header">Browse talent by category</h1>
+        <div class="features">
+            <div class="card">
+                <span><i class='bx bx-buildings'></i></span>
+                <h4 id="bullshit">Development & IT</h4>
+                <!-- <p>
+                    My tutorials in my channel "AsmrProg" are free and you don't need to pay anything.
+                </p> -->
+                <a id="link6" href="talent.html">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <!-- <i class="ri-bug-line"></i> -->
+            <div class="card">
+                <span><i class='bx bx-brain'></i></span>
+                <h4>AI Services</h4>
+                <!-- <p>
+                    You have any problem in your codes? Tell me, i will help you fix it.
+                </p> -->
+                <a id="link5" href="talent.html">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class='bx bx-shape-circle'></i></i></span>
+                <h4>Design & Creativity</h4>
+                <!-- <p>
+                    We have video each 4 days, So check channel every 4 days to watch it!
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class="ri-shake-hands-line"></i></span>
+                <h4>Sales & Marketing</h4>
+                <!-- <p>
+                    You want we worrk together? Write email to us, we will read it.
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class='bx bx-edit-alt'></i></i></span>
+                <h4>Writing and Translation</h4>
+                <!-- <p>
+                    You want we worrk together? Write email to us, we will read it.
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class='bx bxs-user-detail'></i></span>
+                <h4>Admin & Costumer Support</h4>
+                <!-- <p>
+                    You want we worrk together? Write email to us, we will read it.
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class='bx bx-credit-card'></i></i></span>
+                <h4>Finance & Accounting</h4>
+                <!-- <p>
+                    You want we worrk together? Write email to us, we will read it.
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+            <div class="card">
+                <span><i class='bx bxs-tree'></i></i></span>
+                <h4>Engineering & Agriculture</h4>
+                <!-- <p>
+                    You want we worrk together? Write email to us, we will read it.
+                </p> -->
+                <a href="#">Join Now <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="container">
+        <h2 class="header">PROJECT PRICING PLANS</h2>
+        <p class="sub-header">
+            Our pricing plans come with various membership tiers, each tailored to cater to different projects and
+            class+ code types.
+        </p>
+        <div class="pricing">
+            <div class="card">
+                <div class="content">
+                    <h4>Talent Marketplace</h4>
+                    <h3>Post a job and hire a pro</h3>
+                    <p>
+                        <!-- Post a job and hire a pro -->
+                        <!-- <i class="ri-checkbox-circle-line"></i>
+                        Smart coding plan
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        At home workouts -->
+                    </p>
+                </div>
+                <button class="btn">Join Now</button>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <h4>Gold Plan</h4>
+                    <h3>Browse and buy projects</h3>
+                    <p>
+                        <!-- <i class="ri-checkbox-circle-line"></i>
+                        Pro codes
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        Smart coding plan
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        At home workouts -->
+                    </p>
+                </div>
+                <button class="btn">Join Now</button>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <h4>Diamond Plan</h4>
+                    <h3>Get advice from an industry expert</h3>
+                    <p>
+                        <!-- <i class="ri-checkbox-circle-line"></i>
+                        Elite Classes & Courses
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        Pro codes
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        Personal Coaching
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        Smart coding plan
+                    </p>
+                    <p>
+                        <i class="ri-checkbox-circle-line"></i>
+                        At home workouts -->
+                    </p>
+                </div>
+                <button class="btn">Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <span class="blur"></span>
+        <span class="blur"></span>
+        <div class="column">
+            <div class="logo">
+                <img src="images/logo1.png">
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <div class="socials">
+                <a href="#"><i class="ri-youtube-line"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="#"><i class="ri-twitter-line"></i></a>
+            </div>
+        </div>
+        <div class="column">
+            <h4>Company</h4>
+            <a href="#">Business</a>
+            <a href="#">Partnership</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="column">
+            <h4>About Us</h4>
+            <a href="#">Blogs</a>
+            <a href="#">Channels</a>
+            <a href="#">Sponsors</a>
+        </div>
+        <div class="column">
+            <h4>Contact</h4>
+            <a href="#">Contact Us</a>
+            <a href="#">Privicy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
