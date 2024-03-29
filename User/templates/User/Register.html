@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static "User/Register_style.css" %}">
+</head>
+<body>
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <div class="logo"><a href="/"><span>.wiz</span>Jobs</a></div>
+                    <ul class="progress-steps">
+                        <li class="step active">
+                            <span>1</span>
+                            <p>Role <br><span>25 secs to compelete</span></p>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <p>Personal <br><span>60 secs to compelete</span></p>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <p>Security <br><span>30 secs to compelete</span></p>
+                        </li>
+                    </ul>
+                </div>
+                <form action="{% url "register_page" %}" method = 'POST'>
+                    {% csrf_token %}
+                    <div class="form-one form-step active">
+                        <div class="container1">
+                            <h1>Sign up as</h1>
+                            <div class="radio-title-group">
+                                <div class="input-container">
+                                    <input id="Company" type="radio" name="user_type" value="isEmployer">
+                                    <div class="radio-tile">
+                                        <ion-icon name="people-outline"></ion-icon>
+                                        <label for="Company">Employer</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-container">
+                                    <input id="Employee" type="radio" name="user_type" value="isEmployee">
+                                    <div class="radio-tile">
+                                        <ion-icon name="person-circle-outline"></ion-icon>
+                                        <label for="Employee">Employee</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-two form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Personal Information</h2>
+                        <p>Enter your personal information correctly</p>
+                        <div>
+                            {{form.fullname.label}}
+                            {{form.fullname}}
+                        </div>
+                        <div>
+                            {{form.city.label}}
+                            {{form.city}}
+                        </div>
+                        <div class="birth">
+                            {{form.dob.label}}
+                            {{form.dob}}
+                        </div>
+                        <div>
+                            {{form.country.label}}
+                            {{form.country}}
+                        </div>
+                    </div>
+                    <div class="form-Three form-step">
+                        <div class="bg-svg">
+
+                        </div>
+                        <h2>Security</h2>
+                        <div>
+                            {{form.email.label}}
+                            {{form.email}}
+                        </div>
+                        <div>
+                            {{form.password.label}}
+                            {{form.password}}
+                        </div>
+                        <div>
+                            {{form.confirm_password.label}}
+                            {{form.confirm_password}}
+                        </div> 
+                        <div class="Checkbox">
+                            <input type="checkbox" name = 'getNotified'>
+                            <label>Get Notifications</label>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn-prev" disabled>Back</button>
+                        <button type="button" class="btn-next">Next Step</button>
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>.form-four
+    <script src="{% static "User/Reg_script.js" %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

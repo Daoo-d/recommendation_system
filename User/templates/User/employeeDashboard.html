@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
 
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="../../style.css">
+	<link rel="stylesheet" type="text/css" href="{% static "User/employee_styles.css" %}">
+	<link rel="stylesheet" href="{% static "User/Home_style.css" %}">
 	<title>User</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="index.html">
+					<a href="{% url "employee_Analytics_page" %}">
 						<i class='bx bxs-doughnut-chart'></i>
 						<span class="text">Analytics</span>
 					</a>
@@ -75,7 +76,7 @@
 				<span class="num">8</span>
 				</a>
 				<a href="#" class="profile">
-				<img src="img/people.png" alt="">
+				<img src="{% static "User/images/people.png" %}" alt="">
 				</a>
 			</nav>
 			
@@ -102,6 +103,97 @@
 						<span class="text">Complete Profile</span>
 					</a>
 				</div>
+				<section class="container">
+					<h1 class="header">Browse talent by category</h1>
+					<div class="features" style="grid-template-columns: repeat(3,1fr);">
+						<div class="card">
+							<span><i class='bx bx-buildings'></i></span>
+							<h4 >Development & IT</h4>
+							
+							<a  href="talent.html">Explore <i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bx-brain'></i></span>
+							<h4>AI Services</h4>
+							<a  href="talent.html">Explore <i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bxs-lock-alt'></i></span>
+							<h4>CyberSecurity</h4>
+							<a href="#">Explpore<i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bx-shape-circle'></i></span>
+							<h4>Design & Creativity</h4>
+							<a href="#">Explore <i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bx-shape-polygon'></i></span>
+							<h4>Sales & Marketing</h4>
+							<a href="#">Explore <i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bx-edit-alt'></i></span>
+							<h4>Writing and Translation</h4>
+							<a href="#">Explore <i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bxs-user-detail'></i></span>
+							<h4>Admin & Costumer Support</h4>
+							<a href="#">Explore<i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bx-credit-card'></i></span>
+							<h4>Finance & Accounting</h4>
+							<a href="#">Explore<i class="ri-arrow-right-line"></i></a>
+						</div>
+						<div class="card">
+							<span><i class='bx bxs-tree'></i></span>
+							<h4>Engineering & Agriculture</h4>
+							<a href="#">Explore<i class="ri-arrow-right-line"></i></a>
+						</div>
+					</div>
+			
+				</section>
+			
+				<section class="container">
+					<h2 class="header"><i>"Observation ignites innovation"</i></h2>
+					<p class="sub-header">
+						Explore projects,find top-rated experts, and seek tailored consultancy.
+					</p>
+					<div class="pricing">
+						<div class="card">
+							<div class="content">
+								<h4>Talent Marketplace</h4>
+								<h3>Top-Rated people working for clients</h3>
+								<p>
+									
+								</p>
+							</div>
+							<button class="btn">Join Now</button>
+						</div>
+						<div class="card">
+							<div class="content">
+								<h4>Projects</h4>
+								<h3>Browse and buy projects</h3>
+								<p>
+									
+								</p>
+							</div>
+							<button class="btn">Join Now</button>
+						</div>
+						<div class="card">
+							<div class="content">
+								<h4>Consultant</h4>
+								<h3>Get advice from an industry expert</h3>
+								<p>
+									
+								</p>
+							</div>
+							<button class="btn">Join Now</button>
+						</div>
+					</div>
+				</section>
 			
 				<footer class="container">
 					<span class="blur"></span>
@@ -141,5 +233,9 @@
 			
 			</main>
 		</section>	
+		<!-- content -->
+
+		<script type="text/javascript" src="{% static "User/Home_script.js" %}"></script>
+		<script type="text/javascript" src="{% static "User/employee_script.js" %}"></script>
 </body>
 </html>

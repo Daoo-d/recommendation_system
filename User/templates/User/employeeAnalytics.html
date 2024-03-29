@@ -1,23 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
 
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="../../style.css">
+	<link rel="stylesheet" type="text/css" href="{% static "User/employee_styles.css" %}">
+	<link rel="stylesheet" href="{% static "User/Home_style.css" %}">
 	<title>User</title>
 </head>
 <body>
 		<section id="sidebar" class="hide">
 			<a href="#" class="brand">
 				<i class='bx bxs-smile'></i>
-				<span class="text">Menu</span>
+				<span class="text"><Menu></Menu></span>
 			</a>
 			<ul class="side-menu top">
-				<li class="active">
+				<li>
 					<a href="home.html">
 						<i class='bx bxs-dashboard'></i>
 						<span class="text">Home</span>
@@ -29,7 +29,7 @@
 						<span class="text">My Profile</span>
 					</a>
 				</li>
-				<li>
+				<li class="active">
 					<a href="index.html">
 						<i class='bx bxs-doughnut-chart'></i>
 						<span class="text">Analytics</span>
@@ -41,6 +41,12 @@
 						<span class="text">Message</span>
 					</a>
 				</li>
+				<!-- <li>
+					<a href="#">
+						<i class='bx bxs-group' ></i>
+						<span class="text">Team</span>
+					</a>
+				</li> -->
 			</ul>
 			<ul class="side-menu">
 				<li>
@@ -102,44 +108,80 @@
 						<span class="text">Complete Profile</span>
 					</a>
 				</div>
-			
-				<footer class="container">
-					<span class="blur"></span>
-					<span class="blur"></span>
-					<div class="column">
-						<div class="logo">
-							<img src="../../images/logo1.png">
+				<ul class="box-info">
+					<li>
+						<i class='bx bx-calendar-check' ></i>
+						<span class="text">
+							<h3>1020</h3>
+							<p>New Order</p>
+						</span>
+					</li>
+					<li>
+						<i class='bx bxs-group' ></i>
+						<span class="text">
+							<h3>2345</h3>
+							<p>Visitors</p>
+						</span>
+					</li>
+					<li>
+						<i class='bx bxs-dollar-circle' ></i>
+						<span class="text">
+							<h3>$2222</h3>
+							<p>Total Sales</p>
+						</span>
+					</li>
+				</ul>
+
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Recent Orders</h3>
+							<i class='bx bx-search' ></i>
+							<i class='bx bx-filter' ></i>
 						</div>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						</p>
-						<div class="socials">
-							<a href="#"><i class="ri-youtube-line"></i></a>
-							<a href="#"><i class="ri-instagram-line"></i></a>
-							<a href="#"><i class="ri-twitter-line"></i></a>
-						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>User</th>
+									<th>Date Order</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><img src="img/people.png">
+									<p>John Doe</p></td>
+									<td>01-08-2023</td>
+									<td><span class="status process">Process</span></td>
+								</tr>
+								<tr>
+									<td><img src="img/people.png">
+									<p>Maxwell</p></td>
+									<td>01-08-2023</td>
+									<td><span class="status pending">Pending</span></td>
+								</tr>
+								<tr>
+									<td><img src="img/people.png">
+									<p>Richard</p></td>
+									<td>01-08-2023</td>
+									<td><span class="status process">Process</span></td>
+								</tr>
+								<tr>
+									<td><img src="img/people.png">
+									<p>John Doe</p></td>
+									<td>01-08-2023</td>
+									<td><span class="status completed">Completed</span></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					<div class="column">
-						<h4>Company</h4>
-						<a href="#">Business</a>
-						<a href="#">Partnership</a>
-						<a href="#">Network</a>
-					</div>
-					<div class="column">
-						<h4>About Us</h4>
-						<a href="#">Blogs</a>
-						<a href="#">Channels</a>
-						<a href="#">Sponsors</a>
-					</div>
-					<div class="column">
-						<h4>Contact</h4>
-						<a href="#">Contact Us</a>
-						<a href="#">Privicy Policy</a>
-						<a href="#">Terms & Conditions</a>
-					</div>
-				</footer>
-			
+					
+				</div>
 			</main>
 		</section>	
+		<!-- content -->
+
+		<script type="text/javascript" src="{% static "User/Home_script.js" %}"></script>
+		<script type="text/javascript" src="{% static "User/employee_script.js" %}"></script>
 </body>
 </html>

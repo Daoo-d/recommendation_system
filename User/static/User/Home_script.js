@@ -27,7 +27,3 @@ link2.addEventListener('click', () => {
 link3.addEventListener('click', () => {
     scrollToElement('.column');
 });
-
-
-
-

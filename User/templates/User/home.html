@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
     <link rel="stylesheet" href="{% static "User/Home_style.css" %}">
-    <link href="{% static "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" %}" rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
     <title>Work</title>
 </head>
 
@@ -29,7 +29,7 @@
             <li id="link4" class="link"><a href="#">Help</a></li>
             
         </ul>
-        <form action="login/login.html"><button type="submit" class="btn">Sign In</button></form>
+        <form action="{% url "login_page" %}"><button type="submit" class="btn">Sign In</button></form>
         
     </nav>
 
@@ -42,13 +42,13 @@
             <p>
                 Forget the old rules.You can have best people.<br>Right now.Right here.
             </p>
-            <a href="login/login.html"><button class="btn">Get Started</button></a>
+            <a href="{% url "login_page" %}"><button class="btn">Get Started</button></a>
         </div>
         <div class="image">
-            <img src="images/img6.jpg">
+            <img src="{% static "User/images/img6.jpg" %}">
         </div>
         <div class="image2">
-            <img src="images/img5.jpg">
+            <img src="{% static "User/images/img5.jpg" %}">
         </div>
         <div class="spacing">
             <div class="content1">
@@ -68,7 +68,7 @@
                     <i class='bx bx-edit'></i>Work with the best—Without breaking the bank
                 </h4>
                 <p>Upwork makes it affordable to up your work and take advantage of low transaction rates</p>
-                <a href="login/login.html"><button class="btn">Get Started</button></a>
+                <a href="{% url "login_page" %}"><button class="btn">Get Started</button></a>
             </div>
         </div>
     </header>
@@ -222,7 +222,7 @@
         <span class="blur"></span>
         <div class="column">
             <div class="logo">
-                <img src="images/logo1.png">
+                <img src="{% static "User/images/logo1.png" %}">
             </div>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -255,7 +255,7 @@
 
 
 
-    <script src="script.js"></script>
+    <script src={% static "User/Home_script.js" %}></script>
 </body>
 
 </html>
