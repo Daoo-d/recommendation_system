@@ -49,10 +49,10 @@ class SignIn(View):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = EmailBackend.authenticate(request,username=username, password=password)
-        print(user.is_authenticated)
         if user is not None:
         # User is authenticated, log them in
             login(request, user)
+            request.session['user_id'] = user.id
             if user.is_employee:
                 return redirect("employee_page", slug=user.slug)
             elif user.is_employer:
@@ -62,51 +62,70 @@ class SignIn(View):
 
 class EmployeeView(View):
     def get(self,request,slug):
-        user = CustomUser.objects.get(slug=slug)
-        return render(request,"User/employeeDashboard.html", {'user': user})
+        if 'user_id' in request.session:
+            print(request.user.is_authenticated)
+            user = CustomUser.objects.get(slug=slug)
+            return render(request,"User/employeeDashboard.html", {'user': user})      
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html")   
   
 class Employee_Analytics(View):
     def get(self,request,slug):
-        user = CustomUser.objects.get(slug=slug)
-        return render(request,"User/employeeAnalytics.html", {'user': user})
+        if 'user_id' in request.session:
+            user = CustomUser.objects.get(slug=slug)
+            return render(request,"User/employeeAnalytics.html", {'user': user})    
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html") 
+    
+def custom_logout(request):
+        logout(request)
+        return redirect('login_page')
+
+
 def save_skills(employee, skills):
         for skill_name in skills:
             skill, _ = Skill.objects.get_or_create(name=skill_name)
             employee.skills.add(skill)
 
-class employee_portfolio(View):
+class employee_portfolio(LoginRequiredMixin,View):
     
     def get(self,request,slug):
-        form = portfolio_data()
-        user = CustomUser.objects.get(slug=slug)
-        return render(request,"User/portfolio_data.html",{
-            'form':form,
-            'user':user
-        })
+            if 'user_id' in request.session:
+                form = portfolio_data()
+                user = CustomUser.objects.get(slug=slug)
+                return render(request,"User/portfolio_data.html",{
+                    'form':form,
+                    'user':user
+                })
+            elif 'user_id' not in request.session: 
+                return render(request, "User/login.html") 
+        
     def post(self,request,slug):
-        form = portfolio_data(request.POST)
-        user = CustomUser.objects.get(slug=slug)
-        if form.is_valid():
-            print("helloworld")
-            employee = Employee.objects.get(user=user)
-            employee.profile_title = form.cleaned_data['profile_title']
+            if 'user_id' in request.session:
+                form = portfolio_data(request.POST)
+                user = CustomUser.objects.get(slug=slug)
+                if form.is_valid():
+                    employee = Employee.objects.get(user=user)
+                    employee.profile_title = form.cleaned_data['profile_title']
+                    employee.profile_description = form.cleaned_data['profile_description']
+                    employee.education = form.cleaned_data['education']
+                    employee.hourly_rate = form.cleaned_data['hourly_rate']
+                    employee.profile_links = form.cleaned_data['profile_links']
+                    employee.experience = form.cleaned_data['experience']
+                    employee.availability = form.cleaned_data['availability']
+                    employee.languages.set(form.cleaned_data['languages'])
+                    selected_skill = form.cleaned_data['user_s']
+                    selected_skill_list = selected_skill.split(',')
+                    save_skills(employee,selected_skill_list)
+                
+                    employee.save()
+                    print(selected_skill_list)
+                    return HttpResponseRedirect("login")
+                return render(request,"User/portfolio_data.html",{
+                    'form':form,
+                    'user':user
+                })
+            elif 'user_id' not in request.session: 
+                return render(request, "User/login.html") 
             
-            employee.profile_description = form.cleaned_data['profile_description']
-            employee.education = form.cleaned_data['education']
-            employee.hourly_rate = form.cleaned_data['hourly_rate']
-            employee.profile_links = form.cleaned_data['profile_links']
-            employee.experience = form.cleaned_data['experience']
-            employee.availability = form.cleaned_data['availability']
-            employee.languages.set(form.cleaned_data['languages'])
-            selected_skill = form.cleaned_data['user_s']
-            selected_skill_list = selected_skill.split(',')
-            save_skills(employee,selected_skill_list)
-            
-            employee.save()
-            print(selected_skill_list)
-            return HttpResponseRedirect("login")
-        return render(request,"User/portfolio_data.html",{
-            'form':form,
-            'user':user
-        })
             
