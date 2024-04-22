@@ -72,4 +72,26 @@ class Skill(models.Model):
         return self.name
 
 class Employer(models.Model):
-    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)        
+    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)   
+    profile_title = models.CharField(max_length=100,null=True)
+    description = models.TextField(blank=True,null=True)
+    website_url = models.URLField(blank=True,null=True)     
+    industry = models.CharField(max_length=50,null=True)
+
+class Job(models.Model):
+    employer = models.ForeignKey(Employer,on_delete=models.CASCADE,related_name='job_postings')
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    requirements = models.TextField()
+    skills = models.ManyToManyField('Skill') 
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    AVAILABILITY_CHOICES = [
+        ('fulltime', 'Full-Time'),
+        ('parttime', 'Part-Time'),
+        ('both', 'Both'),
+    ]
+    availability = models.CharField(
+        max_length=10,
+        choices=AVAILABILITY_CHOICES,
+        default='both',
+    )

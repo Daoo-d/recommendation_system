@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser,Employee
+from .models import CustomUser,Employee,Employer,Job
 
 class SignUp(forms.ModelForm):
     confirm_password = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password','autocomplete':'off'}))
@@ -31,15 +31,6 @@ class SignUp(forms.ModelForm):
                                           'type': 'date'}),
         }     
 
-# # class CommaSeparatedField(forms.CharField):
-# #     def to_python(self, value):
-# #         # Convert the comma-separated string to a list of skills
-# #         my_array=[]
-# #         if value:
-# #             my_array = value.split(',')
-# #             return my_array
-# #         return my_array
-            
 class portfolio_data(forms.ModelForm):
     user_s = forms.CharField(label='Skills', widget=forms.TextInput(attrs={'id': 'skillsInput','placeholder': 'Enter skills (comma-separated)','autocomplete':'off'}))
     class Meta:
@@ -55,3 +46,30 @@ class portfolio_data(forms.ModelForm):
         'availability': forms.Select(attrs={'placeholder': 'Enter experience details'}),
     }
 
+class employer_profile_data(forms.ModelForm):
+
+    class Meta:
+        model = Employer
+        exclude = ('user','skills')
+        widgets = {
+
+            'profile_title':forms.TextInput(attrs={'placeholder':'Enter company name'}),
+            'description':forms.Textarea(attrs={'placeholder':'Enter company bio'}),
+            'website_url':forms.URLInput(attrs={'placeholder':'Enter company website link'}),
+            'industry':forms.TextInput(attrs={'placeholder':'Enter niche'}),
+            
+        }
+        
+class job_postings(forms.ModelForm):
+    user_s = forms.CharField(label='Required skills', widget=forms.TextInput(attrs={'id': 'skillsInput','placeholder': 'Enter skills (comma-separated)','autocomplete':'off'}))
+
+    class Meta:
+        model = Job
+        exclude = ('employer',)
+        widgets = {
+            'title':forms.TextInput(attrs={'placeholder':'Enter job title'}),
+            'description':forms.Textarea(attrs={'placeholder':'Enter job description'}),
+            'requirements':forms.Textarea(attrs={'placeholder':'Enter job requirements'}),
+            'availability': forms.Select(attrs={'placeholder': 'Enter experience details'}),
+            'salary': forms.NumberInput(attrs={'placeholder':'Enter the job salary'})
+        }        

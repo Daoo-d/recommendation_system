@@ -5,9 +5,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from User.auth_backends import EmailBackend
 from django.views.generic import TemplateView,View
 from django.http import HttpResponseRedirect,HttpResponse
-from .Form import SignUp,portfolio_data
+from .Form import SignUp,portfolio_data,employer_profile_data
 from .models import Employee,Employer,CustomUser,Skill,Language
 # from django.contrib.auth.views import LoginView
+
 
 # Create your views here.
 class HomeTemplate(TemplateView):
@@ -53,27 +54,31 @@ class SignIn(View):
         # User is authenticated, log them in
             login(request, user)
             request.session['user_id'] = user.id
-            if user.is_employee:
-                return redirect("employee_page", slug=user.slug)
-            elif user.is_employer:
-                return render(request, "User/home.html", {'user': user})
+            return redirect("user_page", slug=user.slug)
         else:
             return render(request, "User/login.html")    
 
-class EmployeeView(View):
+class UserView(View):
     def get(self,request,slug):
         if 'user_id' in request.session:
-            print(request.user.is_authenticated)
+            print(request.session['user_id'])
             user = CustomUser.objects.get(slug=slug)
-            return render(request,"User/employeeDashboard.html", {'user': user})      
+            if user.is_employee:
+                return render(request,"User/employeeDashboard.html", {'user': user})  
+            elif user.is_employer:
+                return render(request,"User/employerDashboard.html", {'user': user})      
         elif 'user_id' not in request.session: 
             return render(request, "User/login.html")   
   
-class Employee_Analytics(View):
+class UserAnalytics(View):
     def get(self,request,slug):
         if 'user_id' in request.session:
+            print(request.session['user_id'])
             user = CustomUser.objects.get(slug=slug)
-            return render(request,"User/employeeAnalytics.html", {'user': user})    
+            if user.is_employee:
+                return render(request,"User/employeeAnalytics.html", {'user': user})  
+            elif user.is_employer:
+                return render(request,"User/employeeAnalytics.html", {'user': user})   
         elif 'user_id' not in request.session: 
             return render(request, "User/login.html") 
     
@@ -87,7 +92,7 @@ def save_skills(employee, skills):
             skill, _ = Skill.objects.get_or_create(name=skill_name)
             employee.skills.add(skill)
 
-class employee_portfolio(LoginRequiredMixin,View):
+class employee_portfolio(View):
     
     def get(self,request,slug):
             if 'user_id' in request.session:
@@ -120,7 +125,7 @@ class employee_portfolio(LoginRequiredMixin,View):
                 
                     employee.save()
                     print(selected_skill_list)
-                    return HttpResponseRedirect("login")
+                    return HttpResponse("success")
                 return render(request,"User/portfolio_data.html",{
                     'form':form,
                     'user':user
@@ -128,4 +133,34 @@ class employee_portfolio(LoginRequiredMixin,View):
             elif 'user_id' not in request.session: 
                 return render(request, "User/login.html") 
             
-            
+class employer_Profile(View):
+    def get(self,request,slug):
+        if 'user_id' in request.session:
+            print(request.session)
+            form = employer_profile_data()
+            user = CustomUser.objects.get(slug=slug)
+            return render(request,"User/employer_profile_data.html",{
+                'form':form,
+                'user':user
+            })
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html") 
+
+    def post(self,request,slug):
+        if 'user_id' in request.session:
+            form = employer_profile_data(request.POST)
+            user = CustomUser.objects.get(slug=slug)
+            if form.is_valid():
+                employer = Employer.objects.get(user=user)
+                employer.profile_title = form.cleaned_data['profile_title']
+                employer.description = form.cleaned_data['description']
+                employer.website_url = form.cleaned_data['website_url']
+                employer.industry = form.cleaned_data['industry']
+                employer.save()
+                return HttpResponse('success')
+            return render(request,"User/employer_profile_data.html",{
+                'form':form,
+                'user':user
+            })
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html")    

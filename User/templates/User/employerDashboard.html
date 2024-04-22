@@ -9,7 +9,7 @@
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" type="text/css" href="{% static "User/employee_styles.css" %}">
 	<link rel="stylesheet" href="{% static "User/Home_style.css" %}">
-	<title>User</title>
+	<title>Client</title>
 </head>
 <body>
 		<section id="sidebar" class="hide">
@@ -98,7 +98,7 @@
 							</li>
 						</ul>
 					</div>
-					<a href="{% url "user_portfolio" user.slug %}" class="btn-download">
+					<a href="{% url "employer_profile" user.slug %}" class="btn-download">
 						<i class='bx bxs-cloud-download' ></i>
 						<span class="text">Complete Profile</span>
 					</a>
