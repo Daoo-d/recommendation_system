@@ -12,17 +12,37 @@
     <div id="page" class="site">
         <div class="container">
             <div class="form-box">
-                <form action="{% url "employer_profile" user.slug %}" method = 'POST' autocomplete="off">
+                <form action="{% url "job_post_data" user.slug %}" method = 'POST' autocomplete="off">
                     {% csrf_token %}
                     <div class="form-four form-step active">
                         <div class="bg-svg"></div>
-                        <h2>Enter your profile data </h2>
-                        {% for field in form %}
+                        <h2>Post a Job </h2>
+        
                         <div>
-                            {{field.label}}
-                            {{field}}
+                            {{form.title.label}}
+                            {{form.title}}
                         </div>
-                        {% endfor %}
+                        <div>
+                            {{form.description.label}}
+                            {{form.description}}
+                        </div>
+                        <div>
+                            {{form.requirements.label}}
+                            {{form.requirements}}
+                        </div>
+                        <div>
+                            {{form.user_s.label}}
+                            {{form.user_s}}
+                            <div class="skills-container" id="skillsContainer"></div>
+                        </div>
+                        <div>
+                            {{form.availability.label}}
+                            {{form.availability}}    
+                        </div>
+                        <div>
+                            {{form.salary.label}}
+                            {{form.salary}}
+                        </div>
                     </div>
                     <div class="btn-group">
                         <button type="submit" class="btn-login">Submit</button>
@@ -32,5 +52,6 @@
         </div>
     </div>
     <script src="{% static "User/Reg_script.js" %}"></script>
+    <script src="{% static "User/skill.js" %}"></script>
 </body>
 </html>

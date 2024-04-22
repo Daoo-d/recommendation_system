@@ -10,5 +10,5 @@ urlpatterns = [
     path('portfolio/<slug>',views.employee_portfolio.as_view(),name="user_portfolio"),
     path('logout/', views.custom_logout, name='logout_page'),
     path('client_data<slug>',views.employer_Profile.as_view(),name='employer_profile'),
-    path('Job/<slug>',views,name='post_job'),
+    path('Job/<slug>',views.job_data.as_view(),name='job_post_data'),
 ]

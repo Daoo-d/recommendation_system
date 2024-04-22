@@ -50,7 +50,7 @@ class employer_profile_data(forms.ModelForm):
 
     class Meta:
         model = Employer
-        exclude = ('user','skills')
+        exclude = ('user',)
         widgets = {
 
             'profile_title':forms.TextInput(attrs={'placeholder':'Enter company name'}),
@@ -65,7 +65,7 @@ class job_postings(forms.ModelForm):
 
     class Meta:
         model = Job
-        exclude = ('employer',)
+        exclude = ('employer','skills')
         widgets = {
             'title':forms.TextInput(attrs={'placeholder':'Enter job title'}),
             'description':forms.Textarea(attrs={'placeholder':'Enter job description'}),

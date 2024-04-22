@@ -5,8 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from User.auth_backends import EmailBackend
 from django.views.generic import TemplateView,View
 from django.http import HttpResponseRedirect,HttpResponse
-from .Form import SignUp,portfolio_data,employer_profile_data
-from .models import Employee,Employer,CustomUser,Skill,Language
+from .Form import SignUp,portfolio_data,employer_profile_data,job_postings
+from .models import Employee,Employer,CustomUser,Skill,Job
 # from django.contrib.auth.views import LoginView
 
 
@@ -163,4 +163,42 @@ class employer_Profile(View):
                 'user':user
             })
         elif 'user_id' not in request.session: 
-            return render(request, "User/login.html")    
+            return render(request, "User/login.html")   
+
+class job_data(View):
+    def get(self,request,slug):
+        if 'user_id' in request.session:
+            form = job_postings()
+            user = CustomUser.objects.get(slug=slug)
+            return render(request,"User/job_data.html",{
+                'form':form,
+                'user':user
+            })
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html") 
+
+    def post(self,request,slug):
+        if 'user_id' in request.session:
+            form = job_postings(request.POST)
+            user = CustomUser.objects.get(slug=slug)
+            employer = Employer.objects.get(user=user)
+            if form.is_valid():
+                job_post = form.save(commit=False)
+                job_post.employer = employer
+                job_post.title = form.cleaned_data['title']
+                job_post.description = form.cleaned_data['description']
+                job_post.requirements = form.cleaned_data['requirements']
+                job_post.salary = form.cleaned_data['salary']
+                job_post.availability = form.cleaned_data['availability']
+                job_post.save()
+                selected_skill = form.cleaned_data['user_s']
+                selected_skill_list = selected_skill.split(',')
+                save_skills(job_post,selected_skill_list)
+                job_post.save()
+                return HttpResponse('success')
+            return render(request,"User/job_data.html",{
+                'form':form,
+                'user':user
+            })
+        elif 'user_id' not in request.session: 
+            return render(request, "User/login.html")     

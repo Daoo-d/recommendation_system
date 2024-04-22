@@ -78,6 +78,9 @@ class Employer(models.Model):
     website_url = models.URLField(blank=True,null=True)     
     industry = models.CharField(max_length=50,null=True)
 
+    def __str__(self) -> str:
+        return f"{self.profile_title}"
+
 class Job(models.Model):
     employer = models.ForeignKey(Employer,on_delete=models.CASCADE,related_name='job_postings')
     title = models.CharField(max_length=100)
@@ -95,3 +98,6 @@ class Job(models.Model):
         choices=AVAILABILITY_CHOICES,
         default='both',
     )
+
+    def __str__(self) -> str:
+        return f"{self.title}"
